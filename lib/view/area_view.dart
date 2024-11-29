@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'dart:math'; // For using the value of π.
+import 'dart:math';
+
+import 'package:flutter/widgets.dart';
 
 class CircleAreaView extends StatefulWidget {
   const CircleAreaView({super.key});
@@ -9,17 +11,15 @@ class CircleAreaView extends StatefulWidget {
 }
 
 class _CircleAreaViewState extends State<CircleAreaView> {
-  double radius = 0.0; // Variable to store the radius.
-  double area = 0.0; // Variable to store the calculated area.
-
-  final radiusController = TextEditingController(); // Controller for the radius input.
-  final myKey = GlobalKey<FormState>(); // Key for form validation.
-
+  double radius = 0.0;
+  double area = 0.0; 
+  final radiusController = TextEditingController(); 
+  final myKey = GlobalKey<FormState>(); 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Circle Area Calculator'),
+        title: const Text('Circle Area'),
         centerTitle: true,
         elevation: 0,
       ),
@@ -29,7 +29,6 @@ class _CircleAreaViewState extends State<CircleAreaView> {
           key: myKey,
           child: Column(
             children: [
-              // Input field for the radius.
               TextFormField(
                 controller: radiusController,
                 keyboardType: TextInputType.number,
@@ -53,27 +52,25 @@ class _CircleAreaViewState extends State<CircleAreaView> {
 
               const SizedBox(height: 20),
 
-              // Display the calculated area.
               Text(
                 'Area: ${area.toStringAsFixed(2)}',
-                style: const TextStyle(fontSize: 30),
+                style: const TextStyle(fontSize: 30,color: Colors.teal),
               ),
 
               const SizedBox(height: 20),
 
-              // Button to calculate the area.
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: () {
                     if (myKey.currentState!.validate()) {
                       setState(() {
-                        // Calculate the area using the formula π * radius^2.
+                        
                         area = pi * pow(radius, 2);
                       });
                     }
                   },
-                  child: const Text('Calculate Area'),
+                  child: const Text('Calculate Area',style: TextStyle(color: Colors.green),),
                 ),
               ),
             ],
